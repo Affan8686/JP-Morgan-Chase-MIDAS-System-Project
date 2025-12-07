@@ -1,9 +1,12 @@
 package com.jpmc.midascore.foundation;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * Foundation Transaction class - used for internal processing
+ * This is NOT the entity class (that's model.Transaction)
+ */
 public class Transaction {
+
+    private Long id;
     private long senderId;
     private long recipientId;
     private float amount;
@@ -15,6 +18,15 @@ public class Transaction {
         this.senderId = senderId;
         this.recipientId = recipientId;
         this.amount = amount;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public long getSenderId() {
@@ -43,6 +55,11 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction {senderId=" + senderId + ", recipientId=" + recipientId + ", amount=" + amount + "}";
+        return "Transaction{" +
+                "id=" + id +
+                ", senderId=" + senderId +
+                ", recipientId=" + recipientId +
+                ", amount=" + amount +
+                '}';
     }
 }

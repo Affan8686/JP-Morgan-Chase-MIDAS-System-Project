@@ -1,5 +1,6 @@
 package com.jpmc.midascore.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,6 +27,15 @@ public class Transaction {
 
     @Column
     private String description;
+
+    // ADD THESE NEW FIELDS FOR SENDER AND RECIPIENT
+    @JsonProperty("senderId")
+    @Column(name = "sender_id")
+    private Long senderId;
+
+    @JsonProperty("recipientId")
+    @Column(name = "recipient_id")
+    private Long recipientId;
 
     // Default constructor (required by JPA)
     public Transaction() {
@@ -89,6 +99,23 @@ public class Transaction {
         this.description = description;
     }
 
+    // ADD THESE NEW GETTERS AND SETTERS
+    public Long getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
+    }
+
+    public Long getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
@@ -98,6 +125,8 @@ public class Transaction {
                 ", transactionType='" + transactionType + '\'' +
                 ", timestamp=" + timestamp +
                 ", description='" + description + '\'' +
+                ", senderId=" + senderId +
+                ", recipientId=" + recipientId +
                 '}';
     }
 }

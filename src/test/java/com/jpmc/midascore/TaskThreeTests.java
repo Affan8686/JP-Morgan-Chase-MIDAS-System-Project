@@ -1,5 +1,7 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.entity.UserRecord;
+import com.jpmc.midascore.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class TaskThreeTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
     void task_three_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -32,7 +37,14 @@ public class TaskThreeTests {
         }
         Thread.sleep(2000);
 
+        // FIND WALDORF'S BALANCE HERE
+        UserRecord waldorf = userRepository.findById(5L);
+        float waldorfBalance = waldorf.getBalance();
+        int waldorfBalanceRounded = (int) waldorfBalance;
 
+        logger.info("----------------------------------------------------------");
+        logger.info("WALDORF'S FINAL BALANCE: {}", waldorfBalance);
+        logger.info("WALDORF'S BALANCE (ROUNDED DOWN): {}", waldorfBalanceRounded);
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
@@ -44,3 +56,13 @@ public class TaskThreeTests {
         }
     }
 }
+//```
+//
+//        ### 2. **Run the Test**
+//
+//Run `TaskThreeTests` and look at the console output. You should see:
+//        ```
+//        ----------------------------------------------------------
+//WALDORF'S FINAL BALANCE: XXX.XX
+//WALDORF'S BALANCE (ROUNDED DOWN): XXX
+//        ----------------------------------------------------------
