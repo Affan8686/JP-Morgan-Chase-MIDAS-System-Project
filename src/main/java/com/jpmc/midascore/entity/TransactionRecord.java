@@ -21,6 +21,9 @@ public class TransactionRecord {
     @Column(nullable = false)
     private float amount;
 
+    @Column
+    private float incentive;  // Changed from double to float
+
     // Default constructor
     public TransactionRecord() {
     }
@@ -64,6 +67,14 @@ public class TransactionRecord {
         this.amount = amount;
     }
 
+    public float getIncentive() {  // Changed return type to float
+        return incentive;
+    }
+
+    public void setIncentive(float incentive) {  // Changed parameter type to float
+        this.incentive = incentive;
+    }
+
     @Override
     public String toString() {
         return "TransactionRecord{" +
@@ -71,6 +82,7 @@ public class TransactionRecord {
                 ", senderId=" + (sender != null ? sender.getId() : null) +
                 ", recipientId=" + (recipient != null ? recipient.getId() : null) +
                 ", amount=" + amount +
+                ", incentive=" + incentive +
                 '}';
     }
 }
